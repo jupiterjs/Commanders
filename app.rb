@@ -6,7 +6,7 @@ get "/" do
 	File.read(File.join("public", "index.html"))
 end
 
-before do
+before "/api/*" do
 	content_type :json
 
 	connection = Mongo::Connection.new("flame.mongohq.com", 27107)
@@ -37,7 +37,8 @@ post "/api/commanders" do
 	body = JSON.parse(request.body.read)
 	id = @commanders.insert(body).to_s
 
-	body.merge({ "_id" => id }).to_json
+	body[:_id] = id.to_s
+	body.to_json
 end
 
 put "/api/commanders/:id" do

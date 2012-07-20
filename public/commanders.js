@@ -1,33 +1,26 @@
-steal('can/control', 'can/model', 'can/view/ejs', './bootstrap-cyborg.css').then(function() {
+steal('can/control', 'can/model', 'can/view/ejs', 'can/util/fixture', './bootstrap-cyborg.css').then(function() {
+	can.fixture('GET /api/commanders', function(original, res) {
+		res([{name: 'foo'}, {name: 'bar'}]);
+	});
+
 	var Commander = can.Model({
-		findAll : 'GET /commanders',
-		findOne : 'GET /commanders/{id}',
-		create  : 'POST /commanders',
-		update  : 'PUT /commanders/{id}',
-		destroy : 'DELETE /commanders/{id}'
+		findAll : 'GET /api/commanders',
+		findOne : 'GET /api/commanders/{id}',
+		create  : 'POST /api/commanders',
+		update  : 'PUT /api/commanders/{id}',
+		destroy : 'DELETE /api/commanders/{id}'
 	}, {});
 
-	var list = new Commander.List([{
-			name : 'Jean-Luc Picard',
-			ship : 'USS Enterprise'
-		}, {
-			name : 'Han Solo',
-			ship : 'Millennium Falcon'
-		}, {
-			name : 'William Adama',
-			ship : 'Battlestar Galactica'
-		}, {
-			name : 'Malcom Reynolds',
-			ship : 'Serenity'
-		}, {
-			name : 'Zapp Brannigan',
-			ship : 'Nimbus'
-		}
-	]);
-
 	var Main = can.Control({
-		init : function(el, ops) {
-			this.element.html(can.view('//view.ejs', { commanders : list }));
+		init: function(el, ops) {
+			var self = this;
+
+			can.view('//main.ejs', {
+				commanders: Commander.findAll()
+			})
+			.then(function(frag) {
+				self.element.html(frag);
+			});
 		}
 	});
 
