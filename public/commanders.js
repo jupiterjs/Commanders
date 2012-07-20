@@ -27,7 +27,7 @@ steal('can/control', 'can/model', 'can/view/ejs', './bootstrap-cyborg.css').then
 
 	var Main = can.Control({
 		init : function(el, ops) {
-			this.element.html(can.view('//commanders/view.ejs', { commanders : list }));
+			this.element.html(can.view('//view.ejs', { commanders : list }));
 		}
 	});
 
