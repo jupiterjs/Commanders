@@ -64,5 +64,5 @@ put "/api/commanders/:id" do
 end
 
 delete "/api/commanders/:id" do
-	@commanders.remove(:_id => BSON::ObjectId(params[:id]))
+	#@commanders.remove(:_id => BSON::ObjectId(params[:id]))
 end
