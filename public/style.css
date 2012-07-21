@@ -12,31 +12,56 @@ td.vote {
 	color: #DE3333;
 }
 
-td.photo {
+td.photo, td.buttons {
 	text-align: center;
 	position: relative;
 }
 
-a.up {
-	position: absolute;
-	left: 10px;
-	top: 25px;
-	background: url('/images/up.png');
+.buttons, .actions {
+	width: 40px;
+}
+
+.buttons a, .actions a {
+	display: block;
+	margin-top: 15px;
 	background-size: 32px 32px;
 	height: 32px;
 	width: 32px;
 }
 
+a.up {
+	background: url('images/up.png');
+}
+
 a.down {
-	position: absolute;
-	left: 10px;
-	top: 75px;
-	background: url('/images/down.png');
-	background-size: 32px 32px;
-	height: 32px;
-	width: 32px;
+	background: url('images/down.png');
+}
+
+a.favorite {
+	background: url('images/bookmark.png');
+}
+
+a.delete {
+	background: url('images/delete.png');
+}
+
+.vote span {
+	line-height: 45px;
 }
 
 .actions img {
 	display: block;
+}
+
+.photo {
+	width: 136px;
+}
+
+th, td.large {
+	font-size: 140%;
+}
+
+th {
+	color: #33B5E5;
+	font-weight: bold;
 }
