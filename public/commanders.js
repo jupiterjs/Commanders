@@ -1,7 +1,7 @@
 steal('can/control', 'can/model/list', 'can/view/ejs', 'can/observe/attributes',
-	'./bootstrap-cyborg.css', './style.css')
+	'can/model/cached', './bootstrap-cyborg.css', './style.css')
 .then(function() {
-	var Commander = can.Model({
+	var Commander = can.Model.Cached({
 		findAll : 'GET /api/commanders',
 		findOne : 'GET /api/commanders/{id}',
 		create  : 'POST /api/commanders',
@@ -12,15 +12,15 @@ steal('can/control', 'can/model/list', 'can/view/ejs', 'can/observe/attributes',
 			downvotes : 'number'
 		}
 	}, {
-		votes : function() {
+		votes : can.compute(function() {
 			return this.attr('upvotes') - this.attr('downvotes');
-		}
+		})
 	});
 
 	var Main = can.Control({
 		init: function(el, ops) {
 			var self = this,
-				deferred = Commander.findAll();
+				deferred = Commander.findAll({});
 
 			can.view('main.ejs', {
 				commanders : deferred
@@ -51,9 +51,7 @@ steal('can/control', 'can/model/list', 'can/view/ejs', 'can/observe/attributes',
 		'.up click': function(el, ev) {
 			var row = el.closest('tr'),
 				commander = row.model();
-			commander.attr('upvotes', commander.attr('upvotes') + 1).save().done(function(response) {
-				// TODO
-			});
+			commander.attr('upvotes', commander.attr('upvotes') + 1).save();
 
 			el.parent().find('.down').remove();
 			el.remove();
@@ -61,9 +59,7 @@ steal('can/control', 'can/model/list', 'can/view/ejs', 'can/observe/attributes',
 
 		'.down click': function(el, ev) {
 			var commander = el.closest('tr').model();
-			commander.attr('downvotes', commander.attr('downvotes') + 1).save().done(function(repsonse) {
-				// TODO
-			});
+			commander.attr('downvotes', commander.attr('downvotes') + 1).save();
 
 			el.parent().find('.up').remove();
 			el.remove();
