@@ -1,18 +1,21 @@
 <table class="table table-bordered">
   <thead>
     <th></th>
+    <th></th>
     <th>Name</th>
     <th>Ship</th>
-    <th colspan="2">Vote</th>
   </thead>
   <tbody>
   <% commanders.each(function(commander) { %>
-  <tr <% commander %>>
+  <tr <%= commander %>>
+    <td class="vote">
+      <a href="javascript://" class="up">Up</a>
+      <%= commander.attr('upvotes') - commander.attr('downvotes') %>
+      <a href="javascript://" class="down">Down</a>
+    </td>
     <td><img src="/images/<%= commander.attr('photo') %>"/></td>
     <td><%= commander.attr('name') %></td>
     <td><%= commander.attr('ship') %></td>
-    <td><a href="javascript://" class="up">Up</a></td>
-    <td><a href="javascript://" class="down">Down</a></td>
   </tr>
   <% }) %>
   </tbody>
