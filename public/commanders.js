@@ -1,7 +1,6 @@
-steal('can/control', 'can/model/list', 'can/view/ejs', 'can/observe/attributes',
-	'can/model/cached', './bootstrap-cyborg.css', './style.css')
-.then(function() {
-	var Commander = can.Model.Cached({
+//steal('can/control', 'can/model/list', 'can/view/ejs', 'can/observe/attributes')
+//.then(function() {
+	var Commander = can.Model({
 		findAll : 'GET /api/commanders',
 		findOne : 'GET /api/commanders/{id}',
 		create  : 'POST /api/commanders',
@@ -67,4 +66,4 @@ steal('can/control', 'can/model/list', 'can/view/ejs', 'can/observe/attributes',
 	});
 
 	new Main('#main');
-});
+//});
