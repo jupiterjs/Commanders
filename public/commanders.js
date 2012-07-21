@@ -34,8 +34,14 @@ steal('can/control', 'can/model/list', 'can/view/ejs', 'can/observe/attributes',
 		},
 
 		reorder : function() {
-			this.element.find('tr').each(function() {
-
+			var columnsReverse = $(this.element.find('tr').get().reverse());
+			columnsReverse.each(function() {
+				var model = $(this).model(),
+					prev = $(this).prev(),
+					prevModel = prev.model();
+				if(model && prevModel && model.votes() >= prevModel.votes()) {
+					$(prev).before(this);
+				}
 			});
 		},
 
