@@ -1,5 +1,5 @@
 steal('can/control', 'can/model/list', 'can/view/ejs', 'can/observe/attributes',
-	'can/model/cached', './bootstrap-cyborg.css', './style.css')
+	'can/model/cached', './bootstrap-cyborg.css', './style.css', './responsive.css')
 .then(function() {
 	Commander = can.Model({
 		findAll : 'GET /api/commanders',
@@ -52,20 +52,17 @@ steal('can/control', 'can/model/list', 'can/view/ejs', 'can/observe/attributes',
 		},
 
 		'.up click': function(el, ev) {
-			var row = el.closest('tr'),
-				commander = row.model();
+			var commander = el.closest('tr').model();
 			commander.attr('upvotes', commander.attr('upvotes') + 1).save();
 
-			el.parent().find('.down').remove();
-			el.remove();
+			el.addClass('active').parent().find('.down').remove();
 		},
 
 		'.down click': function(el, ev) {
 			var commander = el.closest('tr').model();
 			commander.attr('downvotes', commander.attr('downvotes') + 1).save();
 
-			el.parent().find('.up').remove();
-			el.remove();
+			el.addClass('active').parent().find('.up').remove();
 		},
 
 		'.favorite click' : function(el, ev) {
@@ -79,7 +76,6 @@ steal('can/control', 'can/model/list', 'can/view/ejs', 'can/observe/attributes',
 		},
 
 		'.vote click' : function(el, ev) {
-			console.log('.Vote');
 			el.find('.toggle').toggle();
 		}
 	});

@@ -18,31 +18,40 @@ td.photo, td.buttons {
 }
 
 .buttons, .actions {
-	width: 40px;
+	width: 32px;
+	text-align: center;
 }
 
 .buttons a, .actions a {
 	display: block;
 	margin-top: 15px;
-	background-size: 32px 32px;
-	height: 32px;
-	width: 32px;
+	height: 26px;
+	width: 26px;
 }
 
 a.up {
-	background: url('images/up.png');
+	background: url('images/icons/up.png') center center no-repeat;
+}
+
+a.up.active {
+	background: url('images/icons/up-active.png') center center no-repeat;
 }
 
 a.down {
-	background: url('images/down.png');
+	background: url('images/icons/down.png') center center no-repeat;
 }
 
+a.down.active {
+	background: url('images/icons/down-active.png') center center no-repeat;
+}
+
+
 a.favorite {
-	background: url('images/bookmark.png');
+	background: url('images/icons/bookmark.png') center center no-repeat;
 }
 
 a.delete {
-	background: url('images/delete.png');
+	background: url('images/icons/delete.png') center center no-repeat;
 }
 
 .vote span {
@@ -57,11 +66,28 @@ a.delete {
 	width: 136px;
 }
 
+.favorites .badge {
+	font-size: 110%;
+}
+
 th, td.large {
-	font-size: 140%;
+	font-size: 150%;
 }
 
 th {
 	color: #33B5E5;
 	font-weight: bold;
+}
+
+.favorites ul {
+	margin-bottom: 0;
+}
+
+.favorites .badge {
+	padding: 8px;
+	line-height: 40px;
+}
+
+td.vote {
+	cursor: pointer;
 }

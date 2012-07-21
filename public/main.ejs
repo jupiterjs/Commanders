@@ -1,15 +1,21 @@
-<h2>Your Favs</h2>
-<div class="well">
+<h2>Your Favorites</h2>
+<div class="well favorites">
+  <ul class="nav nav-pills">
   <% favorites.each(function(fav) { %>
-    <span class="alert alert-info"><%= fav.attr('name') %> (<strong><%= fav.votes() %></strong>)</span>
+    <li>
+      <span class="badge badge-info">
+        <%= fav.attr('name') %> (<strong><%= fav.votes() %></strong>)
+      </span>
+    </li>
   <% }) %>
+  </ul>
 </div>
 
 <table class="table table-bordered">
   <thead>
+    <th></th>
     <th>Points</th>
-    <th>Vote</th>
-    <th>Pic</th>
+    <th>Looks</th>
     <th>Name</th>
     <th>Ship</th>
     <th></th>
@@ -17,6 +23,10 @@
   <tbody>
   <% commanders.each(function(commander) { %>
   <tr <%= commander %>>
+    <td class="buttons">
+      <a href="javascript://" class="up"></a>
+      <a href="javascript://" class="down"></a>
+    </td>
     <td class="vote">
       <span class="<%= commander.votes() > 0 ? 'green' : 'red' %> toggle"><%= commander.votes() %></span>
       <div class="toggle" style="display: none;">
@@ -24,17 +34,15 @@
         <span class="red"><%= commander.attr('downvotes') %></span>
       </div>
     </td>
-    <td class="buttons">
-      <a href="javascript://" class="up"></a>
-      <a href="javascript://" class="down"></a>
-    </td>
     <td class="photo">
       <img src="/images/<%= commander.attr('photo') %>"/>
     </td>
     <td class="large"><%= commander.attr('name') %></td>
     <td class="large"><%= commander.attr('ship') %></td>
     <td class="actions">
-      <a href="javascript://" class="favorite"></a>
+      <% if(favorites.indexOf(commander) == -1) { %>
+        <a href="javascript://" class="favorite"></a>
+      <% } %>
       <a href="javascript://" class="delete"></a>
     </td>
   </tr>
