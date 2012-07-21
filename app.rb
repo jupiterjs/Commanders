@@ -16,9 +16,16 @@ before "/api/*" do
 	@commanders = db.collection("commanders")
 end
 
+def replaceProp(hash, origProp, newProp)
+	hash[newProp] = hash[origProp].to_s
+	hash.delete(origProp)
+end
+
 get "/api/commanders" do
 	commanders = @commanders.find().to_a
-	commanders.each { |c| c["_id"] = c["_id"].to_s }
+	commanders.each do |c|
+		replaceProp(c, "_id", "id")
+	end
 
 	commanders.to_json
 end
@@ -27,7 +34,7 @@ get "/api/commanders/:id" do
 	commander = @commanders.find_one(:_id => BSON::ObjectId(params[:id]))
 
 	if commander.count > 0
-		commander["_id"] = commander["_id"].to_s
+		replaceProp(commander, "_id", "id")
 	end
 
 	commander.to_json
@@ -37,7 +44,7 @@ post "/api/commanders" do
 	body = JSON.parse(request.body.read)
 	id = @commanders.insert(body).to_s
 
-	body[:_id] = id.to_s
+	replaceProp(body, "_id", "id")
 	body.to_json
 end
 
@@ -49,7 +56,7 @@ put "/api/commanders/:id" do
 
 	@commanders.update({ :_id => id }, commander);
 
-	commander["_id"] = commander["_id"].to_s
+	replaceProp(commander, "_id", "id")
 	commander.to_json
 end
 

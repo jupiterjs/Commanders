@@ -1,8 +1,4 @@
-steal('can/control', 'can/model', 'can/view/ejs', 'can/util/fixture', './bootstrap-cyborg.css').then(function() {
-	can.fixture('GET /api/commanders', function(original, res) {
-		res([{name: 'foo'}, {name: 'bar'}]);
-	});
-
+steal('can/control', 'can/model/list', 'can/view/ejs', './bootstrap-cyborg.css').then(function() {
 	var Commander = can.Model({
 		findAll : 'GET /api/commanders',
 		findOne : 'GET /api/commanders/{id}',
@@ -21,6 +17,12 @@ steal('can/control', 'can/model', 'can/view/ejs', 'can/util/fixture', './bootstr
 			.then(function(frag) {
 				self.element.html(frag);
 			});
+		},
+
+		'.up click': function(el, ev) {
+		},
+
+		'.down click': function(el, ev) {
 		}
 	});
 

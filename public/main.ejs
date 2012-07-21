@@ -7,7 +7,7 @@
   </thead>
   <tbody>
   <% commanders.each(function(commander) { %>
-  <tr>
+  <tr <% commander %>>
     <td><img src="/images/<%= commander.attr('photo') %>"/></td>
     <td><%= commander.attr('name') %></td>
     <td><%= commander.attr('ship') %></td>
