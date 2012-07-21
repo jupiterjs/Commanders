@@ -1,7 +1,7 @@
 steal('can/control', 'can/model/list', 'can/view/ejs', 'can/observe/attributes',
 	'can/model/cached', './bootstrap-cyborg.css', './style.css')
 .then(function() {
-	var Commander = can.Model({
+	Commander = can.Model({
 		findAll : 'GET /api/commanders',
 		findOne : 'GET /api/commanders/{id}',
 		create  : 'POST /api/commanders',
@@ -76,6 +76,11 @@ steal('can/control', 'can/model/list', 'can/view/ejs', 'can/observe/attributes',
 		'.delete click' : function(el, ev) {
 			el.closest('tr').model().destroy();
 			el.remove();
+		},
+
+		'.vote click' : function(el, ev) {
+			console.log('.Vote');
+			el.find('.toggle').toggle();
 		}
 	});
 

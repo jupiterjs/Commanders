@@ -16,8 +16,12 @@
   <tbody>
   <% commanders.each(function(commander) { %>
   <tr <%= commander %>>
-    <td class="vote <%= commander.votes() > 0 ? 'green' : 'red' %>">
-      <%= commander.votes() %>
+    <td class="vote">
+      <span class="<%= commander.votes() > 0 ? 'green' : 'red' %> toggle"><%= commander.votes() %></span>
+      <div class="toggle" style="display: none;">
+        <span class="green"><%= commander.attr('upvotes') %></span><br />
+        <span class="red"><%= commander.attr('downvotes') %></span>
+      </div>
     </td>
     <td class="photo">
       <a href="javascript://" class="up"></a>
