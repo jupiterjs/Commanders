@@ -49,20 +49,24 @@ steal('can/control', 'can/model/list', 'can/view/ejs', 'can/observe/attributes',
 		},
 
 		'.up click': function(el, ev) {
-			// TODO enable/disable vote buttons
 			var row = el.closest('tr'),
 				commander = row.model();
 			commander.attr('upvotes', commander.attr('upvotes') + 1).save().done(function(response) {
 				// TODO
 			});
+
+			el.parent().find('.down').remove();
+			el.remove();
 		},
 
 		'.down click': function(el, ev) {
-			// TODO enable/disable vote buttons
 			var commander = el.closest('tr').model();
 			commander.attr('downvotes', commander.attr('downvotes') + 1).save().done(function(repsonse) {
 				// TODO
 			});
+
+			el.parent().find('.up').remove();
+			el.remove();
 		}
 	});
 

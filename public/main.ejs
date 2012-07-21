@@ -8,12 +8,14 @@
   <tbody>
   <% commanders.each(function(commander) { %>
   <tr <%= commander %>>
-    <td class="vote">
-      <a href="javascript://" class="up">Up</a>
+    <td class="vote <%= commander.attr('upvotes') - commander.attr('downvotes') > 0 ? 'green' : 'red' %>">
       <%= commander.attr('upvotes') - commander.attr('downvotes') %>
-      <a href="javascript://" class="down">Down</a>
     </td>
-    <td><img src="/images/<%= commander.attr('photo') %>"/></td>
+    <td class="photo">
+      <a href="javascript://" class="up"></a>
+      <a href="javascript://" class="down"></a>
+      <img src="/images/<%= commander.attr('photo') %>"/>
+    </td>
     <td><%= commander.attr('name') %></td>
     <td><%= commander.attr('ship') %></td>
   </tr>
