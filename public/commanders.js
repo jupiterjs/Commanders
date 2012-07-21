@@ -29,18 +29,21 @@ steal('can/control', 'can/model/list', 'can/view/ejs', 'can/observe/attributes',
 			});
 
 			deferred.done(function(list) {
-				self.on(list, 'change', 'reorder')
+				self.on(list, 'change', 'reorder');
 			});
 		},
 
 		reorder : function() {
 			var columnsReverse = $(this.element.find('tr').get().reverse());
 			columnsReverse.each(function() {
-				var model = $(this).model(),
-					prev = $(this).prev(),
+				var self = $(this),
+					model = self.model(),
+					prev = self.prev(),
 					prevModel = prev.model();
-				if(model && prevModel && model.votes() >= prevModel.votes()) {
-					$(prev).before(this);
+				while(model && prevModel && model.votes() >= prevModel.votes()) {
+					prev.before(self);
+					prev = self.prev();
+					prevModel = prev.model();
 				}
 			});
 		},
