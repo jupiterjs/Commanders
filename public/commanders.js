@@ -78,4 +78,4 @@ steal('can/control', 'can/model/list', 'can/view/ejs', 'can/observe/attributes',
 	});
 
 	new Main('#main');
-//});
+});
