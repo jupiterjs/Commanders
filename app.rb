@@ -24,9 +24,11 @@ end
 get "/api/commanders" do
 	commanders = @commanders.find().to_a
 	commanders.each do |c|
+		c["votes"] = c["upvotes"].to_i - c["downvotes"].to_i
 		replaceProp(c, "_id", "id")
 	end
 
+	commanders.sort! { |a,b| b["votes"] <=> a["votes"] }
 	commanders.to_json
 end
 
