@@ -1,3 +1,38 @@
-.vote a {
-	display: block;
+td.vote {
+	text-align: center;
+	vertical-align: middle;
+	font-size: 40px;
+}
+
+.green {
+	color: #33DE33;
+}
+
+.red {
+	color: #DE3333;
+}
+
+td.photo {
+	text-align: center;
+	position: relative;
+}
+
+a.up {
+	position: absolute;
+	left: 10px;
+	top: 25px;
+	background: url('/images/up.png');
+	background-size: 32px 32px;
+	height: 32px;
+	width: 32px;
+}
+
+a.down {
+	position: absolute;
+	left: 10px;
+	top: 75px;
+	background: url('/images/down.png');
+	background-size: 32px 32px;
+	height: 32px;
+	width: 32px;
 }
