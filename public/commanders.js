@@ -1,5 +1,6 @@
-//steal('can/control', 'can/model/list', 'can/view/ejs', 'can/observe/attributes')
-//.then(function() {
+steal('can/control', 'can/model/list', 'can/view/ejs', 'can/observe/attributes',
+	'can/model/cached', './bootstrap-cyborg.css', './style.css')
+.then(function() {
 	var Commander = can.Model({
 		findAll : 'GET /api/commanders',
 		findOne : 'GET /api/commanders/{id}',
@@ -18,11 +19,14 @@
 
 	var Main = can.Control({
 		init: function(el, ops) {
+			this.favorites = new Commander.List();
+
 			var self = this,
 				deferred = Commander.findAll({});
 
 			can.view('main.ejs', {
-				commanders : deferred
+				commanders : deferred,
+				favorites : this.favorites
 			}).then(function(frag) {
 				self.element.html(frag);
 			});
@@ -62,8 +66,18 @@
 
 			el.parent().find('.up').remove();
 			el.remove();
+		},
+
+		'.favorite click' : function(el, ev) {
+			this.favorites.push(el.closest('tr').model());
+			el.remove();
+		},
+
+		'.delete click' : function(el, ev) {
+			el.closest('tr').model().destroy();
+			el.remove();
 		}
 	});
 
 	new Main('#main');
-//});
+});
