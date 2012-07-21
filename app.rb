@@ -50,9 +50,10 @@ end
 
 put "/api/commanders/:id" do
 	id = BSON::ObjectId(params[:id])
+	p = params
 
 	commander = @commanders.find_one(:_id => id)
-	commander.merge!(JSON.parse(request.body.read))
+	commander.merge!({ :upvotes => p[:upvotes], :downvotes => p[:downvotes] })
 
 	@commanders.update({ :_id => id }, commander);
 
