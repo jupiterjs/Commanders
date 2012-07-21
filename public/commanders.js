@@ -70,10 +70,12 @@ steal('can/control', 'can/model/list', 'can/view/ejs', 'can/observe/attributes',
 
 		'.favorite click' : function(el, ev) {
 			this.favorites.push(el.closest('tr').model());
+			el.remove();
 		},
 
 		'.delete click' : function(el, ev) {
 			el.closest('tr').model().destroy();
+			el.remove();
 		}
 	});
 
