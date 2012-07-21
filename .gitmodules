@@ -1,6 +1,6 @@
 [submodule "public/can"]
 	path = public/can
-	url = git@github.com:jupiterjs/canjs.git
+	url = https://github.com/jupiterjs/canjs.git
 [submodule "public/steal"]
 	path = public/steal
-	url = git@github.com:jupiterjs/steal.git
+	url = https://github.com:jupiterjs/steal.git
