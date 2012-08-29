@@ -55,7 +55,12 @@ put "/api/commanders/:id" do
 	p = params
 
 	commander = @commanders.find_one(:_id => id)
-	commander.merge!({ :upvotes => p[:upvotes], :downvotes => p[:downvotes] })
+
+	if p["like"]
+		commander["upvotes"] = commander["upvotes"].to_i + 1
+	else
+		commander["downvotes"] = commander["downvotes"].to_i + 1
+	end
 
 	@commanders.update({ :_id => id }, commander);
 
