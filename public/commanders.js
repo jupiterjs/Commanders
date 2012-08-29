@@ -7,7 +7,8 @@
 		destroy : 'DELETE /api/commanders/{id}',
 		attributes : {
 			upvotes : 'number',
-			downvotes : 'number'
+			downvotes : 'number',
+			like : 'boolean'
 		}
 	}, {
 		votes : can.compute(function() {
@@ -51,15 +52,13 @@
 
 		'.up click': function(el, ev) {
 			var commander = el.closest('tr').model();
-			commander.attr('upvotes', commander.attr('upvotes') + 1).save();
-
+			commander.attr('like', true).save();
 			el.addClass('active').parent().find('.down').remove();
 		},
 
 		'.down click': function(el, ev) {
 			var commander = el.closest('tr').model();
-			commander.attr('downvotes', commander.attr('downvotes') + 1).save();
-
+			commander.attr('like', false).save();
 			el.addClass('active').parent().find('.up').remove();
 		},
 
