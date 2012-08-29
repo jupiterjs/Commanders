@@ -1,7 +1,7 @@
 <h2>Your Favorites</h2>
 <div class="well favorites">
   <ul class="nav nav-pills">
-  <% favorites.each(function(fav) { %>
+  <% can.each(favorites, function(fav) { %>
     <li>
       <span class="badge badge-info">
         <%= fav.attr('name') %> (<strong><%= fav.votes() %></strong>)
@@ -21,7 +21,7 @@
     <th></th>
   </thead>
   <tbody>
-  <% commanders.each(function(commander) { %>
+  <% can.each(commanders, function(commander) { %>
   <tr <%= commander %>>
     <td class="buttons">
       <a href="javascript://" class="up"></a>

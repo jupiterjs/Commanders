@@ -1,6 +1,4 @@
-steal('can/control', 'can/model/list', 'can/view/ejs', 'can/observe/attributes',
-	'can/model/cached', './bootstrap-cyborg.css', './style.css', './responsive.css')
-.then(function() {
+(function() {
 	Commander = can.Model({
 		findAll : 'GET /api/commanders',
 		findOne : 'GET /api/commanders/{id}',
@@ -81,4 +79,4 @@ steal('can/control', 'can/model/list', 'can/view/ejs', 'can/observe/attributes',
 	});
 
 	new Main('#main');
-});
+})()

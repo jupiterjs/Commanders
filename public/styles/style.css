@@ -30,28 +30,28 @@ td.photo, td.buttons {
 }
 
 a.up {
-	background: url('images/icons/up.png') center center no-repeat;
+	background: url('../images/icons/up.png') center center no-repeat;
 }
 
 a.up.active {
-	background: url('images/icons/up-active.png') center center no-repeat;
+	background: url('../images/icons/up-active.png') center center no-repeat;
 }
 
 a.down {
-	background: url('images/icons/down.png') center center no-repeat;
+	background: url('../images/icons/down.png') center center no-repeat;
 }
 
 a.down.active {
-	background: url('images/icons/down-active.png') center center no-repeat;
+	background: url('../images/icons/down-active.png') center center no-repeat;
 }
 
 
 a.favorite {
-	background: url('images/icons/bookmark.png') center center no-repeat;
+	background: url('../images/icons/bookmark.png') center center no-repeat;
 }
 
 a.delete {
-	background: url('images/icons/delete.png') center center no-repeat;
+	background: url('../images/icons/delete.png') center center no-repeat;
 }
 
 .vote span {
