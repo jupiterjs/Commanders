@@ -88,8 +88,8 @@
 			el.appendTo(document.body)
 				.addClass("alert")
 				.offset( {
-					left: offset.left - 50,
-					top: offset.top - 50
+					left: offset.left,
+					top: offset.top + $(options.anchor).height()
 				} )    
 		},
 		'{anchor} mouseleave': function( el, ev ) {
