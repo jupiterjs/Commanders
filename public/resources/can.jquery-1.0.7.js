@@ -2992,4 +2992,4 @@
 		window.can = can;
 	}
 
-})(can = {}, this )
+})(can = {}, this );

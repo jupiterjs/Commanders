@@ -74,7 +74,8 @@
 		
 		'.photo mouseenter': function(el, ev){
 			var commander = el.closest('tr').model();
-			new Tooltip($('<div>'+commander.attr('name')+'</div>'),{
+
+			new Tooltip($('<div class="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner">'+commander.attr('name') + '</div></div>'),{
 				anchor : el
 			});
 		}
@@ -86,14 +87,14 @@
 		init: function( el, options ) {
 			var offset = $(options.anchor).offset();
 			el.appendTo(document.body)
-				.addClass("alert")
+				.addClass("alert tooltip")
 				.offset( {
 					left: offset.left,
 					top: offset.top + $(options.anchor).height()
 				} )    
 		},
 		'{anchor} mouseleave': function( el, ev ) {
-			this.element.remove();
+			// this.element.remove();
 		}
 	});
 })()
