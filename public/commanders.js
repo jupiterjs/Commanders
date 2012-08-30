@@ -71,11 +71,25 @@
 			el.closest('tr').model().destroy();
 			el.remove();
 		},
-
-		'.vote click' : function(el, ev) {
-			el.find('.toggle').toggle();
+		
+		'.photo mouseenter': function(el, ev){
+			var commander = el.closest('tr').model();
+			new Tooltip($('<div>'+commander.attr('name')+'</div>'),{
+				anchor : el
+			});
 		}
 	});
 
 	new Main('#main');
+	
+	var Tooltip = can.Control({
+		init: function( el, options ) {
+			el.appendTo(document.body)
+				.addClass("tooltip")
+				.offset( $(options.anchor).offset() )    
+		},
+		'{anchor} mouseleave': function( el, ev ) {
+			this.element.remove();
+		}
+	});
 })()
