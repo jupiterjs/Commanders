@@ -84,9 +84,13 @@
 	
 	var Tooltip = can.Control({
 		init: function( el, options ) {
+			var offset = $(options.anchor).offset();
 			el.appendTo(document.body)
-				.addClass("tooltip")
-				.offset( $(options.anchor).offset() )    
+				.addClass("alert")
+				.offset( {
+					left: offset.left - 50,
+					top: offset.top - 50
+				} )    
 		},
 		'{anchor} mouseleave': function( el, ev ) {
 			this.element.remove();

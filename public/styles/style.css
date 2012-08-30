@@ -4,6 +4,10 @@ td.vote {
 	font-size: 40px;
 }
 
+.alert{
+	width:100px;
+}
+
 .green {
 	color: #33DE33;
 }
