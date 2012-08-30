@@ -95,3 +95,7 @@ th {
 td.vote {
 	cursor: pointer;
 }
+
+.tooltip.alert {
+	width: auto;
+}
