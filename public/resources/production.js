@@ -3487,6 +3487,10 @@ $.fn.model = function( type ) {
 			});
 		},
 
+		'{Commander} updated' : function() {
+			this.reorder();
+		},
+
 		'.up click': function(el, ev) {
 			var commander = el.closest('tr').model();
 			commander.attr('like', true).save();
@@ -3512,26 +3516,26 @@ $.fn.model = function( type ) {
 		'.photo mouseenter': function(el, ev){
 			var commander = el.closest('tr').model();
 
-			new Tooltip($('<div class="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner">'+commander.attr('name') + '</div></div>'),{
+			new Tooltip($('<div>' + commander.attr('name') + '</div>'),{
 				anchor : el
 			});
 		}
 	});
 
-	new Main('#main');
-	
 	var Tooltip = can.Control({
 		init: function( el, options ) {
 			var offset = $(options.anchor).offset();
 			el.appendTo(document.body)
-				.addClass("alert tooltip")
+				.addClass("alert")
 				.offset( {
 					left: offset.left,
-					top: offset.top + $(options.anchor).height()
-				} )    
+					top: offset.top - 32
+				} )
 		},
 		'{anchor} mouseleave': function( el, ev ) {
-			// this.element.remove();
+			this.element.remove();
 		}
 	});
-})()
+
+	new Main('#main');
+})();
