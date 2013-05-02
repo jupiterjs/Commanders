@@ -10,8 +10,8 @@ before "/api/*" do
 	content_type :json
 
 	connection = Mongo::Connection.new("flame.mongohq.com", 27107)
-	db = connection.db("app6026407")
-	db.authenticate("heroku", "566e048b9d94bcd99d250ff51259eb74")
+	db = connection.db(ENV["db"])
+	db.authenticate("heroku", ENV["heroku"])
 
 	@commanders = db.collection("commanders")
 end
